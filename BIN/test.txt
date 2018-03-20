@@ -1,0 +1,27 @@
+针对命令行参数的测试用例：
+	1）wc.exe -df source.txt
+	2)   wc.exe -a source.txt
+	3) wc.exe -w   -l   source.txt
+	4) wc.exe -w -l *.txt
+	5) wc.exe -w -s -l *.txt
+	6) wc.exe -w -c source.ttt
+针对文件内容的测试用例：(顶格为source.txt的内容)
+	7）wc.exe -c source.txt
+
+     	
+sdf,ddff.
+ 
+	8) wc.exe -w source.txt
+   sdfds dfdf ,,, @		dfs
+df,ddff 	v,
+,,
+	9) wc.exe -a source.txt
+    ,	
+dfd// dfsdf
+w//
+   
+	10) wc.exe -a source.txt
+/*dsfa,  ///
+*/
+///dsfdsf
+*/
