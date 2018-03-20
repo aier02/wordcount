@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
@@ -29,54 +31,66 @@ public class wordcount {
     	     if(wordCount.flag[0]==1){
     	    	 System.out.println(wordCount.getFile()+" "+"字符数:"+" "+wordCount.getNumofChar());
         	     try {
-          	          File file = new File(System.getProperty("user.dir")+"\\"+"result.txt");
-          	          PrintStream ps = new PrintStream(new FileOutputStream(file));
-          	          ps.append(wordCount.getFile()+" "+"字符数:"+" "+wordCount.getNumofChar());
-          	          ps.close();
+                      FileOutputStream out = new FileOutputStream(System.getProperty("user.dir")+"\\"+"result.txt");  
+                      OutputStreamWriter outWriter = new OutputStreamWriter(out, "UTF-8");  
+                      BufferedWriter bufWrite = new BufferedWriter(outWriter);
+                      bufWrite.write(wordCount.getFile()+" "+"字符数:"+" "+wordCount.getNumofChar());       
+                      bufWrite.close();  
+                      outWriter.close();  
+                      out.close(); 
            	     	} 
-           	     catch (FileNotFoundException e) {
+           	     catch (Exception e) {
           	            // TODO Auto-generated catch block
            	    	 System.out.println("找不到result.txt");
           	        }
     	     }
     	     if(wordCount.flag[1]==1){
-    	    	 System.out.println(wordCount.getFile()+" "+"单词数:"+" "+wordCount.getNumofChar());
+    	    	 System.out.println(wordCount.getFile()+" "+"单词数:"+" "+wordCount.getNumofWord());
         	     try {
-         	          File file = new File(System.getProperty("user.dir")+"\\"+"result.txt");
-         	          PrintStream ps = new PrintStream(new FileOutputStream(file));
-         	          ps.append(wordCount.getFile()+" "+"单词数:"+" "+wordCount.getNumofChar());
-         	          ps.close();
+                     FileOutputStream out = new FileOutputStream(System.getProperty("user.dir")+"\\"+"result.txt");  
+                     OutputStreamWriter outWriter = new OutputStreamWriter(out, "UTF-8");  
+                     BufferedWriter bufWrite = new BufferedWriter(outWriter);
+                     bufWrite.write(wordCount.getFile()+" "+"单词数:"+" "+wordCount.getNumofWord());       
+                     bufWrite.close();  
+                     outWriter.close();  
+                     out.close(); 
           	     	} 
-          	     catch (FileNotFoundException e) {
+          	     catch (Exception e) {
          	            // TODO Auto-generated catch block
           	    	 System.out.println("找不到result.txt");
          	        }
     	     }
     	     if(wordCount.flag[2]==1){
-    	    	 System.out.println(wordCount.getFile()+" "+"行数:"+" "+wordCount.getNumofChar());
+    	    	 System.out.println(wordCount.getFile()+" "+"行数:"+" "+wordCount.getNumofLine());
         	     try {
-        	          File file = new File(System.getProperty("user.dir")+"\\"+"result.txt");
-        	          PrintStream ps = new PrintStream(new FileOutputStream(file));
-        	          ps.append(wordCount.getFile()+" "+"行数:"+" "+wordCount.getNumofChar());
-        	          ps.close();
-         	     	} 
-         	     catch (FileNotFoundException e) {
-        	            // TODO Auto-generated catch block
-         	    	 System.out.println("找不到result.txt");
-        	        }
+                     FileOutputStream out = new FileOutputStream(System.getProperty("user.dir")+"\\"+"result.txt");  
+                     OutputStreamWriter outWriter = new OutputStreamWriter(out, "UTF-8");  
+                     BufferedWriter bufWrite = new BufferedWriter(outWriter);
+                     bufWrite.write(wordCount.getFile()+" "+"行数:"+" "+wordCount.getNumofLine());       
+                     bufWrite.close();  
+                     outWriter.close();  
+                     out.close(); 
+          	     	} 
+          	     catch (Exception e) {
+         	            // TODO Auto-generated catch block
+          	    	 System.out.println("找不到result.txt");
+         	        }
     	     }
     	     if(wordCount.flag[3]==1){
     	    	 System.out.println(wordCount.getFile()+" "+"代码行/空行/注释行:"+" "+wordCount.getNumofCode()+"/"+wordCount.getNumofEmpty()+"/"+wordCount.getNumofComment());
         	     try {
-       	          File file = new File(System.getProperty("user.dir")+"\\"+"result.txt");
-       	          PrintStream ps = new PrintStream(new FileOutputStream(file));
-       	          ps.append(wordCount.getFile()+" "+"代码行/空行/注释行:"+" "+wordCount.getNumofCode()+"/"+wordCount.getNumofEmpty()+"/"+wordCount.getNumofComment());
-       	          ps.close();
-        	     	} 
-        	     catch (FileNotFoundException e) {
-       	            // TODO Auto-generated catch block
-        	    	 System.out.println("找不到result.txt");
-       	        }
+                     FileOutputStream out = new FileOutputStream(System.getProperty("user.dir")+"\\"+"result.txt");  
+                     OutputStreamWriter outWriter = new OutputStreamWriter(out, "UTF-8");  
+                     BufferedWriter bufWrite = new BufferedWriter(outWriter);
+                     bufWrite.write(wordCount.getFile()+" "+"代码行/空行/注释行:"+" "+wordCount.getNumofCode()+"/"+wordCount.getNumofEmpty()+"/"+wordCount.getNumofComment());       
+                     bufWrite.close();  
+                     outWriter.close();  
+                     out.close(); 
+          	     	} 
+          	     catch (Exception e) {
+         	            // TODO Auto-generated catch block
+          	    	 System.out.println("找不到result.txt");
+         	        }
     	     }
 
     		 //String pat = "((-[cwlsa] )+)([^(-[cwlsa] )]+(\\.).+)";
@@ -126,7 +140,7 @@ public class wordcount {
     	 		break;}	 
      }
      
-     System.out.println(com);
+     //System.out.println(com);
 }
 }
 

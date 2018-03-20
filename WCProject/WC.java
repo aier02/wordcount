@@ -115,7 +115,7 @@ public class WC {
 	    int count=0;
 	    for(int i =0;i<lineArray.size();i++){
 	    	Matcher m = r.matcher(lineArray.get(i));
-	    	System.out.println(lineArray.get(i)+lineArray.size());
+	    	//System.out.println(lineArray.get(i)+lineArray.size());
 	    	while(m.find()){
 	    		count++;
 	    	}
@@ -136,7 +136,7 @@ public class WC {
 	    if(this.stopList==null){
 		    for(int i =0;i<lineArray.size();i++){
 		    	Matcher m = r.matcher(lineArray.get(i));
-		    	System.out.println(lineArray.get(i)+lineArray.size());
+		    	//System.out.println(lineArray.get(i)+lineArray.size());
 		    	while(m.find()){
 		    		count++;
 		    		
@@ -168,7 +168,7 @@ public class WC {
 	    int count=0;
 	    for(int i =0;i<lineArray.size();i++){
 	    	Matcher m = r.matcher(lineArray.get(i));
-	    	System.out.println(lineArray.get(i)+lineArray.size());
+	    	//System.out.println(lineArray.get(i)+lineArray.size());
 	    	if(m.find()){
 	    		count++;
 	    	}
@@ -186,7 +186,7 @@ public class WC {
 	    int count=0;
 	    for(int i =0;i<lineArray.size();i++){
 	    	Matcher m = r.matcher(lineArray.get(i));
-	    	System.out.println(lineArray.get(i)+lineArray.size());
+	    	//System.out.println(lineArray.get(i)+lineArray.size());
 	    	if(m.find()){
 	    		count++;
 	    	}
@@ -207,7 +207,7 @@ public class WC {
 	    for(int i =0;i<lineArray.size();i++){
 	    	Matcher m1 = r1.matcher(lineArray.get(i));
 	    	Matcher m2 = r2.matcher(lineArray.get(i));
-	    	System.out.println(lineArray.get(i)+lineArray.size());
+	    	//System.out.println(lineArray.get(i)+lineArray.size());
 	    	if(m1.find()||m2.find()){
 	    		count++;
 	    	}
