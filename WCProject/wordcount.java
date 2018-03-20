@@ -1,22 +1,84 @@
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 
 import java.util.regex.*;
 public class wordcount {
 	 public static void main(String[] args) {  
-	 Scanner scan=new Scanner(System.in);
-	 String com=scan.nextLine();
+	 //Scanner scan=new Scanner(System.in);
+	 //String com=scan.nextLine();
      //循环获取命令行内容，直到获得正确的输入参数
+	     String com="wc.exe";
+		 for(int i=0;i<args.length;i++){
+			 com+=" "+args[i];
+		 }
 	 while(true)
      { 	 
     	 //利用正则表达式检查用户命令行输入参数是否正确
-    	 String pattern = ".*wc.exe (-[cwlsa] )+[^(-[cwlsa] )]+(\\.)[^ ]+( -e .+(\\.)txt)?( -o .+(\\.)txt)?";
+    	 String pattern = "wc.exe (-[cwlsa] )+[^(-[cwlsa] )]+(\\.)[^ ]+( -e .+(\\.)txt)?( -o .+(\\.)txt)?";
     	 boolean isMatch = Pattern.matches(pattern, com);
     	 //表达式正确则跳出循环，否则继续接受用户输入
     	 if(isMatch){
+    		 //根据命令行参数，新建WC类
     	     WC wordCount=new WC(com);
-    	     System.out.println(wordCount.getFile()+wordCount.getNumofWord());
+    	     if(wordCount.flag[0]==1){
+    	    	 System.out.println(wordCount.getFile()+" "+"字符数:"+" "+wordCount.getNumofChar());
+        	     try {
+          	          File file = new File(System.getProperty("user.dir")+"\\"+"result.txt");
+          	          PrintStream ps = new PrintStream(new FileOutputStream(file));
+          	          ps.append(wordCount.getFile()+" "+"字符数:"+" "+wordCount.getNumofChar());
+          	          ps.close();
+           	     	} 
+           	     catch (FileNotFoundException e) {
+          	            // TODO Auto-generated catch block
+           	    	 System.out.println("找不到result.txt");
+          	        }
+    	     }
+    	     if(wordCount.flag[1]==1){
+    	    	 System.out.println(wordCount.getFile()+" "+"单词数:"+" "+wordCount.getNumofChar());
+        	     try {
+         	          File file = new File(System.getProperty("user.dir")+"\\"+"result.txt");
+         	          PrintStream ps = new PrintStream(new FileOutputStream(file));
+         	          ps.append(wordCount.getFile()+" "+"单词数:"+" "+wordCount.getNumofChar());
+         	          ps.close();
+          	     	} 
+          	     catch (FileNotFoundException e) {
+         	            // TODO Auto-generated catch block
+          	    	 System.out.println("找不到result.txt");
+         	        }
+    	     }
+    	     if(wordCount.flag[2]==1){
+    	    	 System.out.println(wordCount.getFile()+" "+"行数:"+" "+wordCount.getNumofChar());
+        	     try {
+        	          File file = new File(System.getProperty("user.dir")+"\\"+"result.txt");
+        	          PrintStream ps = new PrintStream(new FileOutputStream(file));
+        	          ps.append(wordCount.getFile()+" "+"行数:"+" "+wordCount.getNumofChar());
+        	          ps.close();
+         	     	} 
+         	     catch (FileNotFoundException e) {
+        	            // TODO Auto-generated catch block
+         	    	 System.out.println("找不到result.txt");
+        	        }
+    	     }
+    	     if(wordCount.flag[3]==1){
+    	    	 System.out.println(wordCount.getFile()+" "+"代码行/空行/注释行:"+" "+wordCount.getNumofCode()+"/"+wordCount.getNumofEmpty()+"/"+wordCount.getNumofComment());
+        	     try {
+       	          File file = new File(System.getProperty("user.dir")+"\\"+"result.txt");
+       	          PrintStream ps = new PrintStream(new FileOutputStream(file));
+       	          ps.append(wordCount.getFile()+" "+"代码行/空行/注释行:"+" "+wordCount.getNumofCode()+"/"+wordCount.getNumofEmpty()+"/"+wordCount.getNumofComment());
+       	          ps.close();
+        	     	} 
+        	     catch (FileNotFoundException e) {
+       	            // TODO Auto-generated catch block
+        	    	 System.out.println("找不到result.txt");
+       	        }
+    	     }
+
     		 //String pat = "((-[cwlsa] )+)([^(-[cwlsa] )]+(\\.).+)";
     	      
     	      // 创建 Pattern 对象
@@ -60,11 +122,11 @@ public class wordcount {
     	      
     		 break;
     	 }
-    	 else{com=scan.nextLine();}	 
+    	 else{System.out.println("输入格式有误，请重新输入");
+    	 		break;}	 
      }
      
      System.out.println(com);
-     scan.close();
 }
 }
 

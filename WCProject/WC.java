@@ -13,11 +13,12 @@ public class WC {
 	public int[] flag;//记录输入的类型，用于主函数返回相关的值
 	private String method;//输入的参数
 	private String file;//统计的源文件
+	private String sFile;//记录-s参数获取的文件名
 	private String stopList=null;//停用词表
 	private String outputFile=null;//输出文件
 	public WC(String theCommand){
 		//划分-a等参数
-		this.flag=new int[6];
+		this.flag=new int[4];
 		String pattern = "((-[cwlsa] )+)([^(-[cwlsa] )]+(\\.).+)";   
 		// 创建 Pattern 对象
 	    Pattern r = Pattern.compile(pattern);
@@ -38,7 +39,8 @@ public class WC {
 					this.outputFile=path[1].split(" -o ")[1];
 				}
 			}
-	        //确定文件路径
+	        /*
+			//确定文件路径
 			fileFinder finder = new fileFinder();  
 	        List<String> filenameList = new ArrayList<String>();
 	        
@@ -63,6 +65,7 @@ public class WC {
 	        	}
 	        	
 	        }
+	        */
 		    //没有-s参数,即只用处理该目录下的制定文件
 			if(Pattern.matches("[^(-s )]*(-c )[^(-s )]*",m.group(1))){
 				countChar(file);
@@ -80,9 +83,7 @@ public class WC {
 				countCode(file);
 				flag[3]=1;
 				countEmpty(file);
-				flag[4]=1;
 				countComment(file);
-				flag[5]=1;
 			}
 			//有-s参数，迭代处理该目录下的文件
 			if(Pattern.matches(".*(-s ).*",m.group(1))&&Pattern.matches(".*(-c ).*",m.group(1))){
@@ -131,14 +132,22 @@ public class WC {
 	    String pattern="[^, 	]+";
 	    Pattern r = Pattern.compile(pattern);
 	    int count=0;
-	    for(int i =0;i<lineArray.size();i++){
-	    	Matcher m = r.matcher(lineArray.get(i));
-	    	System.out.println(lineArray.get(i)+lineArray.size());
-	    	while(m.find()){
-	    		count++;
-	    	}
+	    //根据stopList文件名是否为空，决定是否计算停用单词
+	    if(this.stopList==null){
+		    for(int i =0;i<lineArray.size();i++){
+		    	Matcher m = r.matcher(lineArray.get(i));
+		    	System.out.println(lineArray.get(i)+lineArray.size());
+		    	while(m.find()){
+		    		count++;
+		    		
+		    	}
+		    }
+		    setNumofWord(count);
 	    }
-	    setNumofWord(count);
+	    else{
+	    	
+	    }
+	    
 	}
 	//计算每个文件的总行数
 	public void countLine(String theFile){
